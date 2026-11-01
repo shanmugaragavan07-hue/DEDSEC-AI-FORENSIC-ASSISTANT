@@ -1,0 +1,220 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 1 / Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Hardened Global Primitives
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isBootstrappedAdmin() {
+      return isVerified()
+        && request.auth.token.email is string
+        && request.auth.token.email.size() <= 254
+        && request.auth.token.email == 'shanmugaragavan07@gmail.com';
+    }
+
+    function isAdmin() {
+      return isBootstrappedAdmin()
+        || (isVerified() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    // Validation Blueprint: UserProfile (/users/{userId})
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'displayName', 'planId', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['uid', 'displayName', 'planId', 'createdAt', 'updatedAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 100
+        && data.planId is string && data.planId.size() <= 40 && data.planId in ['free_trial', 'plus', 'studio_pro']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Validation Blueprint: UserPrivateInfo (/users/{userId}/private/{docId})
+    function isValidUserPrivateInfo(data) {
+      return data.keys().hasAll(['uid', 'email', 'twoFactorEnabled', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['uid', 'email', 'twoFactorEnabled', 'createdAt', 'updatedAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 254
+        && data.twoFactorEnabled is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Validation Blueprint: AdminRecord (/admins/{adminId})
+    function isValidAdminRecord(data) {
+      return data.keys().hasAll(['uid', 'grantedBy', 'createdAt'])
+        && data.keys().hasOnly(['uid', 'grantedBy', 'createdAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.grantedBy is string && data.grantedBy.size() >= 1 && data.grantedBy.size() <= 128
+        && data.createdAt is timestamp;
+    }
+
+    // Validation Blueprint: CaseMetadata (/cases/{caseId})
+    function isValidCaseMetadata(data) {
+      return data.keys().hasAll(['caseId', 'ownerId', 'title', 'description', 'imageUrl', 'status', 'versionCount', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['caseId', 'ownerId', 'title', 'description', 'imageUrl', 'status', 'versionCount', 'createdAt', 'updatedAt'])
+        && data.caseId is string && data.caseId.size() >= 1 && data.caseId.size() <= 128 && data.caseId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.ownerId is string && data.ownerId.size() >= 1 && data.ownerId.size() <= 128 && data.ownerId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.title is string && data.title.size() >= 1 && data.title.size() <= 160
+        && data.description is string && data.description.size() <= 4000
+        && data.imageUrl is string && data.imageUrl.size() <= 512
+        && data.status is string && data.status.size() <= 24 && data.status in ['draft', 'saved', 'archived']
+        && data.versionCount is int && data.versionCount >= 0 && data.versionCount <= 500
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Collection: /users/{userId}
+    match /users/{userId} {
+      allow get: if isSignedIn() && isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isSignedIn() && (resource.data.uid == request.auth.uid || isBootstrappedAdmin());
+
+      allow create: if isVerified()
+        && isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming())
+        && incoming().uid == request.auth.uid
+        && incoming().planId == 'free_trial'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isVerified()
+        && isValidId(userId)
+        && isValidUserProfile(incoming())
+        && incoming().uid == existing().uid
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          (isOwner(userId)
+            && incoming().planId == existing().planId
+            && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'updatedAt']))
+          ||
+          (isAdmin()
+            && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'planId', 'updatedAt']))
+        );
+
+      allow delete: if isVerified() && isValidId(userId) && isAdmin();
+
+      // Subcollection: /users/{userId}/private/{docId} (Master Gate + PII Split)
+      match /private/{docId} {
+        allow get: if isSignedIn()
+          && isValidId(userId)
+          && docId == 'info'
+          && (isOwner(userId) || isAdmin())
+          && get(/databases/$(database)/documents/users/$(userId)).data.uid == userId;
+
+        allow list: if false;
+
+        allow create: if isVerified()
+          && isValidId(userId)
+          && docId == 'info'
+          && isOwner(userId)
+          && isValidUserPrivateInfo(incoming())
+          && incoming().uid == request.auth.uid
+          && incoming().email == request.auth.token.email
+          && incoming().createdAt == request.time
+          && incoming().updatedAt == request.time
+          && get(/databases/$(database)/documents/users/$(userId)).data.uid == request.auth.uid;
+
+        allow update: if isVerified()
+          && isValidId(userId)
+          && docId == 'info'
+          && isValidUserPrivateInfo(incoming())
+          && incoming().uid == existing().uid
+          && incoming().createdAt == existing().createdAt
+          && incoming().updatedAt == request.time
+          && (
+            (isOwner(userId)
+              && incoming().email == existing().email
+              && incoming().diff(existing()).affectedKeys().hasOnly(['twoFactorEnabled', 'updatedAt'])
+              && get(/databases/$(database)/documents/users/$(userId)).data.uid == request.auth.uid)
+            ||
+            (isAdmin()
+              && incoming().diff(existing()).affectedKeys().hasOnly(['email', 'twoFactorEnabled', 'updatedAt']))
+          );
+
+        allow delete: if isVerified() && isValidId(userId) && docId == 'info' && isAdmin();
+      }
+    }
+
+    // Collection: /admins/{adminId}
+    match /admins/{adminId} {
+      allow get: if isSignedIn() && isValidId(adminId) && (isOwner(adminId) || isAdmin());
+      allow list: if isSignedIn() && (resource.data.uid == request.auth.uid || isBootstrappedAdmin());
+
+      allow create: if isVerified()
+        && isValidId(adminId)
+        && isValidAdminRecord(incoming())
+        && incoming().uid == adminId
+        && incoming().createdAt == request.time
+        && isAdmin();
+
+      allow update: if false;
+      allow delete: if isVerified() && isValidId(adminId) && isBootstrappedAdmin();
+    }
+
+    // Collection: /cases/{caseId}
+    match /cases/{caseId} {
+      allow get: if isSignedIn()
+        && isValidId(caseId)
+        && (existing().ownerId == request.auth.uid || isAdmin());
+
+      allow list: if isSignedIn()
+        && (resource.data.ownerId == request.auth.uid || isBootstrappedAdmin());
+
+      allow create: if isVerified()
+        && isValidId(caseId)
+        && isValidCaseMetadata(incoming())
+        && incoming().caseId == caseId
+        && incoming().ownerId == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+
+      allow update: if isVerified()
+        && isValidId(caseId)
+        && isValidCaseMetadata(incoming())
+        && incoming().caseId == existing().caseId
+        && incoming().ownerId == existing().ownerId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          (existing().ownerId == request.auth.uid
+            && existing().status != 'archived'
+            && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'description', 'imageUrl', 'status', 'versionCount', 'updatedAt']))
+          ||
+          (isAdmin()
+            && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'description', 'imageUrl', 'status', 'versionCount', 'updatedAt']))
+        );
+
+      allow delete: if isVerified()
+        && isValidId(caseId)
+        && (existing().ownerId == request.auth.uid || isAdmin());
+    }
+  }
+}

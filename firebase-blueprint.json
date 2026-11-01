@@ -1,0 +1,173 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Non-PII workspace profile metadata for a DEDSEC customer.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Authentication user UID."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Display name shown in the DEDSEC workspace."
+        },
+        "planId": {
+          "type": "string",
+          "maxLength": 40,
+          "enum": ["free_trial", "plus", "studio_pro"],
+          "description": "Active subscription tier identifier."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was last updated."
+        }
+      },
+      "required": ["uid", "displayName", "planId", "createdAt", "updatedAt"]
+    },
+    "UserPrivateInfo": {
+      "title": "UserPrivateInfo",
+      "description": "Isolated PII record for a user, restricted strictly to owner and admin.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Owner Firebase UID."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254,
+          "description": "Verified account email address."
+        },
+        "twoFactorEnabled": {
+          "type": "boolean",
+          "description": "Whether email OTP 2FA challenge is enabled."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp."
+        }
+      },
+      "required": ["uid", "email", "twoFactorEnabled", "createdAt", "updatedAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted administrator membership document.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Administrator UID."
+        },
+        "grantedBy": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "UID or bootstrap identifier that granted admin access."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp."
+        }
+      },
+      "required": ["uid", "grantedBy", "createdAt"]
+    },
+    "CaseMetadata": {
+      "title": "CaseMetadata",
+      "description": "Synchronized composite case metadata record without binary image blobs.",
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Unique case identifier."
+        },
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "UID of the case owner."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Case title."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 4000,
+          "description": "Original facial description."
+        },
+        "imageUrl": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Server-hosted composite image path."
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 24,
+          "enum": ["draft", "saved", "archived"],
+          "description": "Lifecycle status of the case."
+        },
+        "versionCount": {
+          "type": "integer",
+          "description": "Number of composite versions saved."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp."
+        }
+      },
+      "required": ["caseId", "ownerId", "title", "description", "imageUrl", "status", "versionCount", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Non-PII user profile metadata."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": "UserPrivateInfo",
+      "description": "Isolated PII user info strictly restricted to owner or admin."
+    },
+    "/admins/{adminId}": {
+      "schema": "AdminRecord",
+      "description": "Trusted admin role lookup collection."
+    },
+    "/cases/{caseId}": {
+      "schema": "CaseMetadata",
+      "description": "Synchronized composite case metadata records owned by customers."
+    }
+  }
+}

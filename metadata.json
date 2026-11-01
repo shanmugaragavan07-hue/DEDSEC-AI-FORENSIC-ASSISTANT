@@ -1,0 +1,6 @@
+{
+  "name": "DEDSEC AI Forensic Assistant",
+  "description": "Apple Liquid Glass dark studio for illustrative graphite facial-composite creation, voice and text profile extraction, image refinement, case management, and customer-funded SaaS workflows.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

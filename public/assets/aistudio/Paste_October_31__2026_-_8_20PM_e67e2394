@@ -1,0 +1,1200 @@
+# DEDSEC AI FORENSIC ASSISTANT
+## COMPLETE APPLICATION DEVELOPMENT MASTER PROMPT
+### Apple Liquid Glass Dark UI | AI Facial Composite Studio | Voice & Text | Customer-Funded SaaS
+
+---
+
+# 1. PROJECT IDENTITY
+
+Product name: DEDSEC AI FORENSIC ASSISTANT
+
+Product category: AI-powered illustrative facial-composite creation and editing platform.
+
+Product vision:
+
+Build a premium, commercially presentable web application that converts detailed natural-language descriptions into realistic black-and-white graphite-style illustrative facial composites.
+
+Users must be able to describe fictional adult facial characteristics using either:
+
+1. Text input.
+2. Voice input.
+
+The application should extract facial attributes, allow users to review and edit them, generate a composite, refine the existing result, save cases and export the final work.
+
+DEDSEC must feel like a professional commercial software product, not a basic student project or generic AI dashboard.
+
+The most important feature is high-quality image generation.
+
+The application must combine:
+
+- Premium Apple-inspired UI.
+- AI-powered facial profile extraction.
+- Text-to-image generation.
+- Voice-to-text processing.
+- Facial attribute editing.
+- Image-to-image refinement.
+- Case management.
+- Image and PDF export.
+- User authentication.
+- Subscription management.
+- Payment integration.
+- Usage and cost monitoring.
+- Protected administration dashboard.
+
+---
+
+# 2. CRITICAL DEVELOPMENT INSTRUCTIONS
+
+Before changing or creating anything, inspect the existing project.
+
+If an existing DEDSEC codebase is supplied, treat it as the source of truth.
+
+Inspect:
+
+- Frontend architecture.
+- Backend architecture.
+- Database and data models.
+- Authentication.
+- API routes.
+- AI provider integrations.
+- Image-generation models.
+- Speech-to-text integration.
+- Image storage.
+- Case management.
+- Subscription and quota implementation.
+- Payment gateway integration.
+- Admin functionality.
+- Environment variables.
+- Existing errors.
+
+Create an implementation plan before making substantial changes.
+
+### Preservation rules
+
+If functionality already works, preserve it.
+
+Do not unnecessarily:
+
+- Rewrite the backend.
+- Replace the database.
+- Change API endpoints.
+- Change working API request and response formats.
+- Replace working AI providers.
+- Change model identifiers.
+- Change authentication providers.
+- Remove working payment integrations.
+- Change existing user data structures.
+- Remove working features.
+
+If building from scratch, use a clean and maintainable architecture.
+
+If a requested change requires modifying existing functional logic, preserve the original behaviour and test the integration.
+
+Do not produce only a visual mockup.
+
+Build a real working application.
+
+---
+
+# 3. BRANDING AND PRODUCT DESIGN
+
+The design direction is:
+
+**Apple Liquid Glass + Dark Creative Studio + Minimal Professional UI.**
+
+The application should resemble premium macOS software inside a browser.
+
+Reference design characteristics:
+
+- Apple macOS interfaces.
+- Apple Liquid Glass.
+- Subtle visionOS-inspired translucent surfaces.
+- Professional creative editing software.
+- Minimalist image-editing workspaces.
+
+### Brand personality
+
+- Premium.
+- Professional.
+- Minimal.
+- Trustworthy.
+- Modern.
+- Technologically advanced.
+- Easy to use.
+
+Avoid generic AI website styling.
+
+Do not fill the application with unnecessary dashboard cards, neon borders, excessive gradients or glowing animations.
+
+### Colour palette
+
+| Element | Colour |
+|---|---|
+| Main background | #08090D |
+| Secondary background | #101116 |
+| Sidebar | #0C0D12 |
+| Elevated surface | #181A22 |
+| Primary text | #F5F5F7 |
+| Secondary text | #989BA6 |
+| Glass panel | rgba(255,255,255,0.045) |
+| Glass border | rgba(255,255,255,0.09) |
+| Accent blue | #7AA7FF |
+| Accent purple | #A78BFA |
+| Success | #68D6A3 |
+| Warning | #E8BB75 |
+
+Use a modern system font stack similar to Apple's SF Pro typography.
+
+Use Lucide-style icons consistently.
+
+---
+
+# 4. SEPARATE PUBLIC MARKETING WEBSITE
+
+Create a professional marketing website separate from the authenticated application.
+
+### Landing page
+
+Hero headline:
+
+"Every Detail Matters. Every Feature Has a Story."
+
+Supporting text:
+
+"Transform detailed facial descriptions into carefully crafted illustrative facial composites using AI-powered text and voice workflows."
+
+Hero actions:
+
+- Get Started.
+- Explore DEDSEC.
+
+### Website sections
+
+1. Hero.
+2. Product introduction.
+3. How DEDSEC works.
+4. Text description workflow.
+5. Voice input workflow.
+6. Facial profile extraction.
+7. AI composite generation.
+8. Image refinement.
+9. Case management.
+10. Subscription plans.
+11. Frequently asked questions.
+12. Footer and contact information.
+
+Use genuine application screenshots and approved reference illustrations.
+
+The marketing website must have its own navigation and must not interfere with application authentication.
+
+---
+
+# 5. LOGIN AND REGISTRATION
+
+The first screen of the application must be the login or registration screen.
+
+Create a premium Apple-inspired dark authentication interface.
+
+### Login methods
+
+- Email and password.
+- Google sign-in.
+- Email verification.
+- Password reset.
+
+### Registration workflow
+
+1. Name.
+2. Email.
+3. Password.
+4. Confirm password.
+5. Accept terms and privacy policy.
+6. Verify email.
+7. Create account.
+8. Assign configured default plan.
+9. Open the application workspace.
+
+### Two-step verification
+
+Implement genuine email OTP verification.
+
+Include:
+
+- OTP entry.
+- Resend code.
+- Expiration handling.
+- Verification status.
+- Error handling.
+- Appropriate login verification challenges.
+
+Do not display a fake OTP or pretend an email was sent when no email provider is configured.
+
+### Security
+
+- Secure password hashing.
+- Protected sessions.
+- Server-side verification.
+- Rate limiting.
+- Secure OAuth.
+- Protected routes.
+- Password recovery.
+- Environment-variable configuration.
+
+Never expose secret API keys in browser code.
+
+---
+
+# 6. CUSTOMER-FUNDED BUSINESS MODEL
+
+THIS IS A CRITICAL BUSINESS REQUIREMENT.
+
+The application owner must not be required to personally purchase AI API credits, image-generation credits, hosting upgrades or other paid services as an automatic operating requirement.
+
+The business model must use customer subscription and usage revenue to fund operating costs.
+
+### Financial principles
+
+1. Customers pay for the plans and services they use.
+2. Customer revenue funds AI generation, hosting, storage, email and payment-processing costs.
+3. DEDSEC monitors usage and operating expenses.
+4. Subscription prices must be configurable.
+5. Generation quotas must be configurable.
+6. The application must protect against uncontrolled provider usage.
+7. No paid service may be activated automatically without explicit approval.
+8. No hidden charges or unexpected spending.
+
+### Important operating limitation
+
+External AI providers, hosting companies and email services may require prepaid balances, minimum charges or paid accounts.
+
+Do not claim that the application can operate completely free if the selected provider requires payment.
+
+If a provider requires upfront payment, explain that requirement and offer a genuinely usable free or open-source alternative where available.
+
+Never purchase credits or upgrade services automatically.
+
+### Free plan
+
+The preferred initial Free plan target is 300 image generations per month.
+
+However, the Free plan must only be enabled at that quota when its operating cost is covered by genuinely free provider capacity, local infrastructure, sponsorship or an explicitly approved business budget.
+
+Otherwise, make the Free quota configurable or offer a limited free trial.
+
+Never silently subsidise free usage using the owner's personal money.
+
+---
+
+# 7. SUBSCRIPTION SYSTEM
+
+Create a professional subscription management interface.
+
+Support configurable:
+
+- Free or trial plan.
+- Plus plan.
+- Additional premium plans.
+
+Each plan should have:
+
+- Name.
+- Price.
+- Billing interval.
+- Generation allowance.
+- Features.
+- Usage restrictions.
+- Upgrade and downgrade rules.
+
+Use the existing configured production pricing if available.
+
+Do not invent final commercial prices.
+
+### Customer dashboard
+
+Display:
+
+- Current plan.
+- Subscription status.
+- Generation allowance.
+- Used generations.
+- Remaining generations.
+- Renewal date.
+- Payment history.
+- Upgrade options.
+
+Enforce all generation limits on the backend.
+
+---
+
+# 8. PAYMENT INTEGRATION
+
+Use a suitable authorised Indian merchant payment gateway, such as Razorpay or Cashfree, subject to eligibility and approval.
+
+Support available payment methods such as:
+
+- UPI.
+- UPI QR through the authorised gateway.
+- Debit and credit cards.
+- Net banking.
+- Other gateway-supported options.
+
+### Payment workflow
+
+1. Customer selects a plan.
+2. Backend creates a checkout session.
+3. Customer completes payment.
+4. Gateway sends a signed webhook.
+5. Backend verifies payment.
+6. Subscription is activated.
+7. Customer receives confirmation.
+
+### Payment requirements
+
+- Never activate subscriptions using unverified screenshots.
+- Never trust frontend payment status alone.
+- Use server-side payment verification.
+- Keep gateway secrets on the backend.
+- Support payment failure and retry.
+- Handle refunds and subscription cancellation where supported.
+- Store transaction references securely.
+
+Do not ask users to enter their UPI PIN, banking password, card CVV or payment OTP into DEDSEC.
+
+Do not require the owner to upload a personal GPay QR code or publish a personal mobile number.
+
+Use an eligible merchant account.
+
+Merchant onboarding and financial-account ownership must meet applicable age and provider requirements, with parent or guardian involvement where necessary.
+
+---
+
+# 9. AI PROVIDER AND IMAGE-GENERATION COST MANAGEMENT
+
+Create a provider architecture that supports the existing AI integrations.
+
+Where possible, support:
+
+- Existing configured image-generation API.
+- Existing facial profile extraction model.
+- Existing image-to-image refinement model.
+- Approved alternative providers.
+- Usable open-source local inference.
+
+Do not automatically switch models.
+
+### Provider requirements
+
+- Provider configuration.
+- Model configuration.
+- API connectivity status.
+- Error handling.
+- Request timeouts.
+- Usage tracking.
+- Cost estimation where available.
+- Configurable rate limits.
+- Quota enforcement.
+- Retry handling.
+
+### Cost control
+
+Before a generation request:
+
+1. Authenticate the customer.
+2. Check subscription status.
+3. Check remaining credits.
+4. Check provider availability.
+5. Authorise the operation.
+
+After a successful operation:
+
+1. Record the generation.
+2. Record provider usage where available.
+3. Calculate estimated cost.
+4. Update customer usage.
+5. Display remaining credits.
+
+Prevent unlimited generation requests.
+
+Do not deduct a successful-generation credit for a failed operation unless the plan explicitly and transparently defines otherwise.
+
+### No unexpected spending
+
+Never automatically:
+
+- Purchase API credits.
+- Activate paid subscriptions.
+- Upgrade cloud hosting.
+- Enable paid infrastructure.
+- Switch to a more expensive model.
+
+Require explicit owner approval for paid service configuration.
+
+---
+
+# 10. MAIN CREATIVE STUDIO WORKSPACE
+
+This is the most important part of DEDSEC.
+
+The generated image must be the central attraction.
+
+### Desktop layout
+
+LEFT SIDEBAR:
+
+- DEDSEC logo.
+- New Composite.
+- My Cases.
+- Recent Cases.
+- Saved Sketches.
+- Subscription.
+- Usage.
+- Settings.
+- Profile.
+
+TOP BAR:
+
+- Workspace title.
+- Current case name.
+- Generation status.
+- Usage indicator.
+- Account menu.
+
+CENTER CANVAS:
+
+- Large image preview.
+- Zoom.
+- Fit to screen.
+- Full-screen preview.
+- Before/after comparison where supported.
+
+RIGHT INSPECTOR:
+
+- Facial attributes.
+- Description details.
+- Refinement instructions.
+- Generation settings where supported.
+
+BOTTOM PANEL:
+
+- Version history.
+- Previous generations.
+- Case notes.
+
+The image canvas must receive the greatest visual attention.
+
+Keep the layout clean and spacious.
+
+---
+
+# 11. TEXT DESCRIPTION INPUT
+
+Allow users to describe fictional adult facial characteristics using natural language.
+
+Example:
+
+"A fictional adult man with an oval face, short black hair, slightly arched eyebrows, deep-set brown eyes, a broad nose, medium lips and a trimmed beard."
+
+Input panel:
+
+- Large multiline description field.
+- Character count if useful.
+- Clear button.
+- Voice input button.
+- Generate button.
+- Input validation.
+- Processing state.
+
+Preserve the user's actual description.
+
+Do not silently remove important attributes.
+
+---
+
+# 12. VOICE INPUT
+
+Allow users to describe facial characteristics using their microphone.
+
+### Workflow
+
+1. User grants microphone permission.
+2. Recording starts.
+3. Speech is transcribed.
+4. Transcript is displayed.
+5. User reviews and edits the transcript.
+6. Approved text enters the same facial-profile extraction pipeline.
+
+Include:
+
+- Microphone button.
+- Recording status.
+- Stop recording.
+- Transcription display.
+- Retry.
+- Clear.
+- Permission error handling.
+
+Voice and text must use the same downstream processing pipeline.
+
+Preserve existing speech-to-text integrations.
+
+---
+
+# 13. FACIAL PROFILE EXTRACTION
+
+Convert descriptions into a structured editable profile.
+
+### Head and face
+
+- Face shape.
+- Forehead.
+- Hairline.
+- Cheeks.
+- Jawline.
+- Chin.
+
+### Eyes and eyebrows
+
+- Eye shape.
+- Eye spacing.
+- Eye size.
+- Eyebrow shape.
+- Eyebrow thickness.
+
+### Nose and mouth
+
+- Nose shape.
+- Nose width.
+- Nose bridge.
+- Lip shape.
+- Mouth width.
+
+### Hair
+
+- Hairstyle.
+- Hair length.
+- Hair texture.
+- Facial hair.
+- Beard and moustache descriptions.
+
+### Additional features
+
+- Ears.
+- Glasses.
+- Facial marks.
+- Accessories.
+
+### Extraction requirements
+
+- Preserve explicitly supplied traits.
+- Mark unspecified traits as unknown.
+- Do not invent missing information.
+- Let users correct extracted traits.
+- Preserve the original description.
+- Display the editable profile before generation where appropriate.
+
+Preserve the existing profile data structure and extraction integration.
+
+---
+
+# 14. AI IMAGE GENERATION
+
+The main product feature is realistic black-and-white graphite-style facial-composite generation.
+
+### Target output
+
+- Realistic graphite pencil appearance.
+- Monochrome.
+- Detailed facial features.
+- Natural facial proportions.
+- Fine pencil shading.
+- Detailed hair texture.
+- Realistic eyes.
+- Neutral background.
+- Consistent composition.
+- Professional paper-like appearance.
+
+Avoid:
+
+- Cartoon style.
+- Anime.
+- 3D character rendering.
+- Painted portraits.
+- Plastic-looking faces.
+- Generic repeated faces.
+- Unrelated facial characteristics.
+
+### Generation pipeline
+
+1. Receive approved text or voice transcript.
+2. Extract facial profile.
+3. Validate profile.
+4. Build a detailed image prompt.
+5. Call the configured image-generation provider.
+6. Receive the actual image.
+7. Store the image.
+8. Display the real generated result.
+9. Save generation metadata.
+
+### Image fidelity
+
+Prioritise the described facial characteristics as much as the selected model allows.
+
+Do not silently replace failed results with generic sample images.
+
+When generation fails:
+
+- Display a clear error.
+- Preserve the previous valid image.
+- Allow retry.
+- Log the failure.
+- Avoid fake success messages.
+
+Never claim perfect accuracy.
+
+---
+
+# 15. IMAGE GENERATION REFERENCE LIBRARY
+
+Allow administrators and developers to configure approved image-generation style references.
+
+Use the reference images provided by the product owner to understand:
+
+- Graphite pencil texture.
+- Monochrome appearance.
+- Realistic facial proportions.
+- Shading.
+- Line detail.
+- Composition.
+- Background.
+
+Reference images should guide style, not force the model to reproduce the same face.
+
+Do not copy a real person's identity or create identity-matching functionality.
+
+The image-generation prompt must combine:
+
+1. The user's facial description.
+2. The structured facial profile.
+3. The chosen visual style.
+4. The required composition.
+5. Negative instructions against unwanted styles.
+
+Allow style references to be changed without rewriting the whole generation engine.
+
+---
+
+# 16. FACIAL ATTRIBUTE EDITOR
+
+Create a premium inspector panel with expandable attribute groups.
+
+Support appropriate controls:
+
+- Dropdowns.
+- Sliders.
+- Toggles.
+- Text fields.
+- Editable descriptions.
+
+The editor must be connected to the actual profile state.
+
+Do not create decorative controls that do nothing.
+
+Preserve the existing backend profile structure.
+
+---
+
+# 17. REFINE EXISTING IMAGE
+
+The Refine function must modify the existing composite.
+
+Example instructions:
+
+- Add glasses.
+- Change hairstyle.
+- Adjust jawline.
+- Change eyebrow shape.
+- Add moustache.
+- Modify the facial hair.
+
+### Refinement pipeline
+
+1. Select the existing generated image.
+2. Enter a refinement instruction.
+3. Analyse the requested change.
+4. Preserve unrelated traits.
+5. Send the original image and refinement instruction through the configured image-to-image provider.
+6. Receive the refined image.
+7. Save a new version.
+
+Include:
+
+- Refinement instruction field.
+- Refine button.
+- Processing indicator.
+- Before/after comparison.
+- Version history.
+- Restore previous version where supported.
+
+Preserve the existing refinement API and model configuration.
+
+---
+
+# 18. CASE MANAGEMENT
+
+Each saved case should contain:
+
+- Case title.
+- Original description.
+- Voice transcript where applicable.
+- Structured facial profile.
+- Generated image.
+- Image versions.
+- Refinement instructions.
+- Creation date.
+- Modification date.
+- Notes.
+
+### My Cases interface
+
+Include:
+
+- Search.
+- Filters.
+- Recent cases.
+- Saved cases.
+- Image thumbnails.
+- Open case.
+- Rename.
+- Delete with confirmation.
+
+Preserve the existing database and storage architecture.
+
+---
+
+# 19. EXPORT SYSTEM
+
+Support:
+
+- PNG.
+- JPEG.
+- PDF case report.
+
+PDF report may contain:
+
+- DEDSEC branding.
+- Composite preview.
+- Case reference.
+- Original description.
+- Structured facial profile.
+- Generation details.
+- Refinement history.
+- Creation date.
+- Illustrative-use disclaimer.
+
+Ensure exports contain the actual saved image and case data.
+
+---
+
+# 20. ADMIN DASHBOARD
+
+Create or preserve a protected administrator dashboard.
+
+Only authorised administrators can access it.
+
+### User management
+
+- User list.
+- Account status.
+- Subscription status.
+- Usage overview.
+
+### Subscription management
+
+- Plan configuration.
+- Price configuration.
+- Quota configuration.
+- Subscription status.
+
+### Payment management
+
+- Payment records.
+- Transaction references.
+- Payment status.
+- Verification status.
+
+### AI management
+
+- Provider configuration.
+- Model configuration.
+- API connectivity.
+- Generation usage.
+- Provider errors.
+- Cost estimates.
+
+### Financial dashboard
+
+Display:
+
+- Total customer revenue.
+- Total successful payments.
+- AI usage costs.
+- Estimated generation cost.
+- Hosting and storage costs where measurable.
+- Payment-processing fees where available.
+- Gross revenue.
+- Estimated operating margin.
+
+### Cost protection
+
+- Configurable spending limits.
+- Usage alerts.
+- Provider failure alerts.
+- Generation limits.
+- Unexpected usage warnings.
+
+Never expose administrator controls to ordinary customers.
+
+Never expose secret credentials in the browser.
+
+---
+
+# 21. SETTINGS AND ACCOUNT
+
+Include:
+
+- Profile information.
+- Email.
+- Password.
+- Security.
+- Subscription.
+- Usage.
+- Preferences.
+- Logout.
+
+Preserve all existing account functionality.
+
+---
+
+# 22. LIQUID GLASS UI COMPONENTS
+
+Build reusable components for:
+
+- Sidebar.
+- Top navigation.
+- Glass panels.
+- Buttons.
+- Inputs.
+- Modals.
+- Popovers.
+- Tooltips.
+- Notifications.
+- Progress indicators.
+- Image canvas.
+- Inspector panels.
+- Gallery cards.
+- Subscription cards.
+
+Use subtle:
+
+- Background blur.
+- Translucency.
+- Fine borders.
+- Soft shadows.
+- Layered surfaces.
+- Smooth hover feedback.
+
+Do not overuse glass effects.
+
+Ensure text remains readable.
+
+---
+
+# 23. ANIMATIONS
+
+Implement restrained premium animations:
+
+- Smooth page transitions.
+- Sidebar transitions.
+- Button hover feedback.
+- Modal transitions.
+- Image preview transitions.
+- Loading states.
+- Refinement status transitions.
+
+Respect reduced-motion settings.
+
+Do not delay important functionality.
+
+---
+
+# 24. RESPONSIVE DESIGN
+
+Support:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile.
+
+Desktop:
+
+Use the complete creative studio layout.
+
+Tablet:
+
+Allow inspector and navigation panels to collapse.
+
+Mobile:
+
+Use a vertical layout with a large image preview and accessible editing controls.
+
+Prevent horizontal overflow.
+
+Ensure all controls remain usable on touch screens.
+
+---
+
+# 25. SECURITY AND PRIVACY
+
+Implement:
+
+- Secure password storage.
+- Protected sessions.
+- Role-based access.
+- Server-side authorisation.
+- Rate limiting.
+- Input validation.
+- Secure file storage.
+- Verified payment webhooks.
+- Safe API credential management.
+
+Never expose:
+
+- Private API keys.
+- Merchant secrets.
+- Passwords.
+- OTPs.
+- Banking credentials.
+
+Provide clear privacy and data-retention information.
+
+---
+
+# 26. RESPONSIBLE PRODUCT POSITIONING
+
+DEDSEC is an illustrative fictional facial-composite creation tool.
+
+It is not a biometric identification system.
+
+Do not implement:
+
+- Face recognition.
+- Identity matching.
+- Searching for people in image databases.
+- Automated suspect identification.
+- Claims that generated images reliably identify real individuals.
+
+Make clear that AI-generated facial composites are illustrative and may not accurately represent any real person.
+
+---
+
+# 27. DEPLOYMENT AND INFRASTRUCTURE
+
+Support local development and production deployment.
+
+Use the existing stack wherever possible.
+
+Document:
+
+- Required environment variables.
+- Database configuration.
+- AI provider configuration.
+- Email configuration.
+- Storage configuration.
+- Payment gateway configuration.
+- Deployment instructions.
+
+Prefer free-tier and open-source services when technically suitable.
+
+Do not assume that a free tier will remain free or cover unlimited usage.
+
+Do not enable paid services without owner approval.
+
+If a provider requires upfront funding, disclose this before activation.
+
+The application must be able to run in a limited development mode without live payment processing.
+
+---
+
+# 28. TESTING
+
+Test the real application.
+
+### Authentication
+
+- Registration.
+- Email/password login.
+- Google login.
+- OTP verification.
+- Password reset.
+- Logout.
+
+### AI workflow
+
+- Text description.
+- Voice input.
+- Speech transcription.
+- Profile extraction.
+- Attribute editing.
+- Actual image generation.
+- Actual image display.
+- Image refinement.
+- Version history.
+- Error handling.
+
+### Case workflow
+
+- Create.
+- Save.
+- Reopen.
+- Update.
+- Rename.
+- Delete.
+- Export.
+
+### Payment workflow
+
+- Checkout session.
+- Successful test payment.
+- Failed payment.
+- Webhook verification.
+- Subscription activation.
+- Quota enforcement.
+
+### Cost management
+
+- Usage recording.
+- Provider cost tracking.
+- Spending alerts.
+- Quota exhaustion.
+- Prevention of uncontrolled API calls.
+
+### UI
+
+- Desktop.
+- Tablet.
+- Mobile.
+- Accessibility.
+- Responsive layout.
+- Loading states.
+- Error states.
+
+Do not invent test results.
+
+---
+
+# 29. DEVELOPMENT PHASES
+
+Implement in this order.
+
+PHASE 1: Inspect the existing codebase and report current functionality.
+
+PHASE 2: Establish the design system.
+
+PHASE 3: Redesign authentication.
+
+PHASE 4: Build or redesign the separate marketing website.
+
+PHASE 5: Implement the main creative studio layout.
+
+PHASE 6: Implement the text and voice input interface.
+
+PHASE 7: Implement the profile editor and image-generation interface.
+
+PHASE 8: Implement refinement and version history.
+
+PHASE 9: Implement cases and export.
+
+PHASE 10: Implement subscriptions and payment interfaces.
+
+PHASE 11: Implement the admin and cost-management dashboard.
+
+PHASE 12: Responsive design.
+
+PHASE 13: Regression testing.
+
+Work incrementally and verify each phase.
+
+---
+
+# 30. FINAL ACCEPTANCE CRITERIA
+
+DEDSEC is complete only when:
+
+1. The application has a premium Apple Liquid Glass dark UI.
+2. The marketing website is separate from the workspace.
+3. Login and registration work.
+4. Google authentication works when configured.
+5. Email OTP works when configured.
+6. Text input works.
+7. Voice transcription works.
+8. Facial profile extraction works.
+9. Attributes are editable.
+10. Actual graphite-style images are generated.
+11. Actual images are displayed.
+12. Existing image refinement works.
+13. Case saving works.
+14. Case reopening works.
+15. PNG and JPEG downloads work.
+16. PDF exports work.
+17. Subscription management works.
+18. Payment verification works when configured.
+19. Customer usage quotas are enforced.
+20. Admin controls are protected.
+21. Provider costs are monitored where measurable.
+22. No paid service is activated without approval.
+23. The UI works on mobile and desktop.
+24. Existing working integrations are preserved.
+25. No fake success states or placeholder functionality are presented as complete.
+
+---
+
+# 31. FINAL CODING AGENT REPORT
+
+At completion, provide:
+
+1. Project architecture inspected.
+2. UI components created or redesigned.
+3. Existing features preserved.
+4. Features newly implemented.
+5. Backend changes made, if any.
+6. AI provider and model status.
+7. Voice integration status.
+8. Authentication status.
+9. Payment integration status.
+10. Customer billing and quota status.
+11. Cost-management status.
+12. Files modified.
+13. Tests actually completed.
+14. Remaining setup requirements.
+15. Known bugs and limitations.
+
+Do not claim something works unless it has been tested.
+
+---
+
+# FINAL PRODUCT VISION
+
+DEDSEC should feel like a premium Apple-inspired AI creative studio.
+
+The main experience must be a beautiful, large graphite facial-composite canvas surrounded by elegant glass panels, intuitive editing tools and professional workflows.
+
+Customers should be able to register, select a plan, pay securely, generate composites, refine images, save cases and export their work.
+
+The business must be designed around customer-funded operating costs, with transparent pricing, quotas and cost protection.
+
+The owner must never be surprised by automatic API purchases, hosting upgrades or other paid services.
+
+**BUILD THE COMPLETE WORKING PRODUCT. NOT JUST A MOCKUP.**
+
+**CHANGE NOTHING THAT ALREADY WORKS WITHOUT A CLEAR TECHNICAL REASON.**
